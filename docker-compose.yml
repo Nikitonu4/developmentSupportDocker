@@ -1,0 +1,114 @@
+version: "3"
+
+networks:
+  gitea:
+    external: false
+services:
+  jenkins:
+    build:
+      context: jenkins
+    user: root
+    networks:
+      - gitea
+    volumes: 
+      # монтируем папку jenkins в контейнер
+    - ./jenkins/jenkins_home:/var/jenkins_home
+    ports: 
+    - 8080:8080
+    - 50000:50000
+    restart: always
+
+  gitea:
+    build:
+      context: gitea
+    environment:
+      - USER_UID=1000
+      - USER_GID=1000
+      - GITEA__database__DB_TYPE=mysql
+      - GITEA__database__HOST=db:3306
+      - GITEA__database__NAME=gitea
+      - GITEA__database__USER=gitea
+      - GITEA__database__PASSWD=gitea
+    restart: always
+    networks:
+      - gitea
+    volumes:
+      - ./gitea/data:/data
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /Users/nikitonu4/.ssh/:/data/git/.ssh
+    ports:
+      - "3000:3000"
+      - "22:22"
+    depends_on:
+      - db
+  db:
+    image: mysql:8
+    user: root
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=gitea
+      - MYSQL_USER=gitea
+      - MYSQL_PASSWORD=gitea
+      - MYSQL_DATABASE=gitea
+    networks:
+      - gitea
+    volumes:
+      - ./gitea/db/mysql:/var/lib/mysql
+  # server:
+  #   build: 
+  #     context: gitea
+  #   environment:
+  #     - USER_UID=1000
+  #     - USER_GID=1000
+  #     - GITEA__database__DB_TYPE=postgres
+  #     - GITEA__database__HOST=db:5432
+  #     - GITEA__database__NAME=gitea
+  #     - GITEA__database__USER=gitea
+  #     - GITEA__database__PASSWD=gitea
+  #   restart: always
+  #   networks:
+  #     - gitea
+  #   volumes:
+  #     - ./gitea/data:/data
+  #     - /etc/timezone:/etc/timezone:ro
+  #     - /etc/localtime:/etc/localtime:ro
+  #   ports:
+  #     - "3000:3000"
+  #     - "222:22"
+  #   depends_on:
+  #     - db
+
+  # db:
+  #   image: postgres:13
+  #   restart: always
+  #   environment:
+  #     - POSTGRES_USER=gitea
+  #     - POSTGRES_PASSWORD=gitea
+  #     - POSTGRES_DB=gitea
+  #   networks:
+  #     - gitea
+  #   volumes:
+  #     - ./gitea/db/postgres:/var/lib/postgresql/data
+
+  kanboard:
+    build: 
+      context: kanboard
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./kanboard/kanboard_data:/var/www/app/data
+      - ./kanboard/kanboard_plugins:/var/www/app/plugins
+      - ./kanboard/kanboard_ssl:/etc/nginx/ssl
+  #бд для общения с gitea
+  # db:
+  #   image: mariadb:10
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=admin
+  #     - MYSQL_DATABASE=gitea
+  #     - MYSQL_USER=gitea
+  #     - MYSQL_PASSWORD=12345
+  #   volumes:
+  #     - ./gitea/db/:/var/lib/mysql
+  #   restart: always

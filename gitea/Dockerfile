@@ -1,0 +1,3 @@
+FROM gitea/gitea:1.13.4
+
+EXPOSE 3000 22
