@@ -22,13 +22,13 @@ services:
     build:
       context: gitea
     environment:
-      - USER_UID=1000
-      - USER_GID=1000
+      - USER_UID=${USER_UID}
+      - USER_GID=${USER_GID}
       - GITEA__database__DB_TYPE=mysql
       - GITEA__database__HOST=db:3306
-      - GITEA__database__NAME=gitea
-      - GITEA__database__USER=gitea
-      - GITEA__database__PASSWD=gitea
+      - GITEA__database__NAME=${DB_NAME_FOR_GITEA}
+      - GITEA__database__USER=${DB_USER_FOR_GITEA}
+      - GITEA__database__PASSWD=${DB_PASSWD_FOR_GITEA}
       - SSH_DOMAIN=localhost
     restart: always
     networks:
@@ -48,10 +48,10 @@ services:
     user: root
     restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=gitea
-      - MYSQL_USER=gitea
-      - MYSQL_PASSWORD=gitea
-      - MYSQL_DATABASE=gitea
+      - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASSWD_FOR_GITEA}
+      - MYSQL_USER=${DB_USER_FOR_GITEA}
+      - MYSQL_PASSWORD=${DB_PASSWD_FOR_GITEA}
+      - MYSQL_DATABASE=${DB_NAME_FOR_GITEA}
     networks:
       - gitea
     volumes:
