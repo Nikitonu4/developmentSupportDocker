@@ -58,6 +58,8 @@ services:
       - ./gitea/db/mysql:/var/lib/mysql
     security_opt:
       - seccomp:unconfined
+    ports:
+      - "3306:3306"
   kanboard:
     build: 
       context: kanboard
