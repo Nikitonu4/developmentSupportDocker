@@ -6,6 +6,5 @@ USER root
 
 EXPOSE 8080 50000
 
-RUN apt-get update
-RUN apt-get install python
+RUN apt-get update && apt-get install -y python
 USER jenkins
