@@ -223,7 +223,6 @@ define('ENABLE_XFRAME', true);
 define('MARKDOWN_ESCAPE_HTML', true);
 // API alternative authentication header, the default is HTTP Basic Authentication defined in RFC2617
 define('API_AUTHENTICATION_HEADER', 'X-API-Auth');
-// base64_encode('jsonrpc:19ffd9709d03ce50675c3a43d1c49c1ac207f4bc45f06c5b2701fbdf8929');
 
 // Enable/disable url rewrite
 define('ENABLE_URL_REWRITE', false);
@@ -255,10 +254,10 @@ define('HTTP_PROXY_HOSTNAME', '');
 define('HTTP_PROXY_PORT', '3128');
 define('HTTP_PROXY_USERNAME', '');
 define('HTTP_PROXY_PASSWORD', '');
-define('HTTP_PROXY_EXCLUDE', '');
+define('HTTP_PROXY_EXCLUDE', 'localhost');
 
 // Set to false to allow self-signed certificates
-define('HTTP_VERIFY_SSL_CERTIFICATE', false);
+define('HTTP_VERIFY_SSL_CERTIFICATE', true);
 
 // TOTP (2FA) issuer name
 define('TOTP_ISSUER', 'Kanboard');
