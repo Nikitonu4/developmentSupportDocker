@@ -106,7 +106,7 @@ define('LDAP_AUTH', false);
 define('LDAP_SERVER', '');
 
 // By default, require certificate to be verified for ldaps:// style URL. Set to false to skip the verification
-define('LDAP_SSL_VERIFY', false);
+define('LDAP_SSL_VERIFY', true);
 
 // Enable LDAP START_TLS
 define('LDAP_START_TLS', false);
@@ -196,10 +196,10 @@ define('LDAP_GROUP_USER_ATTRIBUTE', 'username');
 define('LDAP_GROUP_ATTRIBUTE_NAME', 'cn');
 
 // Enable/disable the reverse proxy authentication
-define('REVERSE_PROXY_AUTH', true);
+define('REVERSE_PROXY_AUTH', false);
 
 // Header name to use for the username
-define('REVERSE_PROXY_USER_HEADER', 'jenkins');
+define('REVERSE_PROXY_USER_HEADER', 'REMOTE_USER');
 
 // Username of the admin, by default blank
 define('REVERSE_PROXY_DEFAULT_ADMIN', '');
@@ -255,10 +255,10 @@ define('HTTP_PROXY_HOSTNAME', '');
 define('HTTP_PROXY_PORT', '3128');
 define('HTTP_PROXY_USERNAME', '');
 define('HTTP_PROXY_PASSWORD', '');
-define('HTTP_PROXY_EXCLUDE', 'localhost');
+define('HTTP_PROXY_EXCLUDE', '');
 
 // Set to false to allow self-signed certificates
-define('HTTP_VERIFY_SSL_CERTIFICATE', true);
+define('HTTP_VERIFY_SSL_CERTIFICATE', false);
 
 // TOTP (2FA) issuer name
 define('TOTP_ISSUER', 'Kanboard');
