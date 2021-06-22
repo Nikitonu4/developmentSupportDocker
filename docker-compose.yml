@@ -70,7 +70,10 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    environment:
+      - API_AUTHENTICATION_HEADER=X-API-Auth
     volumes:
       - ./data/kanboard_data/app_data:/var/www/app/data
       - ./data/kanboard_data/kanboard_plugins:/var/www/app/plugins
       - ./data/kanboard_data/kanboard_ssl:/etc/nginx/ssl
+    
