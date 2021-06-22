@@ -1,0 +1,2 @@
+gitea:1.2.1
+kanboard:1.5.11
