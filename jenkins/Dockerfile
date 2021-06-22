@@ -91,5 +91,10 @@ COPY plugins.txt /usr/share/jenkins/plugins.txt
 
 # запускаем скрипт установки плагинов и скармливаем ему наш файл с плагинами
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
-RUN apk update && apk add python3 
+
+USER root
+RUN apk update && apk add python 
+
+USER ${user}
+
 
