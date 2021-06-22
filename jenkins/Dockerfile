@@ -93,7 +93,7 @@ COPY plugins.txt /usr/share/jenkins/plugins.txt
 RUN /usr/local/bin/install-plugins.sh < /usr/share/jenkins/plugins.txt
 
 USER root
-RUN apk update && apk add python3
+RUN apk update && apk add python3.8
 
 USER ${user}
 
