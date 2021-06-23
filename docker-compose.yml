@@ -1,5 +1,4 @@
 version: "3"
-
 networks:
   devops:
     external: false
@@ -17,8 +16,7 @@ services:
     - 50000:50000
     restart: always
   gitea:
-    build:
-      context: gitea
+    image: gitea/gitea:1.14.3
     environment:
       - APP_NAME=Gitea
       - USER_UID=1000
@@ -63,8 +61,7 @@ services:
     ports:
       - "3306:3306"
   kanboard:
-    build: 
-      context: kanboard
+    image: kanboard/kanboard:v1.2.20
     networks:
       - devops
     ports:

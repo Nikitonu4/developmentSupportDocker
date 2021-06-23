@@ -3,7 +3,6 @@ FROM alpine:3.13.5
 VOLUME /var/www/app/data
 VOLUME /var/www/app/plugins
 VOLUME /etc/nginx/ssl
-# COPY config.php /var/www/app/data/config.php
 
 EXPOSE 80 443
 

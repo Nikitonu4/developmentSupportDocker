@@ -1,5 +1,0 @@
-/vendor
-/public/vendor/plugins
-/modules/options/bindata.go
-/modules/public/bindata.go
-/modules/templates/bindata.go
