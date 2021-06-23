@@ -1,3 +1,0 @@
-FROM bats-jenkins
-
-RUN mkdir C:/ProgramData/Jenkins/Reference/pester ; echo $null >> C:/ProgramData/Jenkins/Reference/pester/test.override
