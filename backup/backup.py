@@ -1,22 +1,13 @@
 import sys
 import os
 import shutil
+from datetime import datetime
 
 def zip():
-  # zname = f"{root_directory}/backup/dataBackup.zip"
-  # newzip=zipfile.ZipFile(zname,'w') #создаем архив
-  # newzip.write(f"{root_directory}/data")
-
-  zip_name = f"{root_directory}/backup/dataBackup"
+  now = datetime.now()
+  zip_name = f"{root_directory}/backup/dataBackup {now.strftime('%d-%m-%Y %H:%M')}"
   directory_name = f"{root_directory}/data"
-
   shutil.make_archive(zip_name, 'zip', directory_name)
-
-  # os.system(f"mkdir {}/data")
-  # os.system(f"tar -cvzf dataBackup.tar.gz {os.path.abspath('..')}/data1")
-  # print(root_directory)
-  # os.system(f"sudo rm -rf {root_directory}/data") # удаляет папку data
-
 
 def unzip(path_to_data_backup):
   os.system(f"sudo rm -rf {root_directory}/data")
