@@ -43,6 +43,7 @@ services:
       - "2222:22"
     depends_on:
       - db
+    user: gitea
   db:
     image: mysql:8
     user: root
