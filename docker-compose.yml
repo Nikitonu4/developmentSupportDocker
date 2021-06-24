@@ -43,7 +43,6 @@ services:
       - "2222:22"
     depends_on:
       - db
-    user: gitea
   db:
     image: mysql:8
     user: root
@@ -55,8 +54,8 @@ services:
       - MYSQL_DATABASE=${DB_NAME_FOR_GITEA}
     networks:
       - devops
-    # security_opt:
-    #   - seccomp:unconfined
+    security_opt:
+      - seccomp:unconfined
     volumes:
       - ./data/gitea_data/db/mysql:/var/lib/mysql
     ports:
@@ -74,4 +73,3 @@ services:
       - ./data/kanboard_data/app_data:/var/www/app/data
       - ./data/kanboard_data/kanboard_plugins:/var/www/app/plugins
       - ./data/kanboard_data/kanboard_ssl:/etc/nginx/ssl
-    
