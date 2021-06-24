@@ -21,10 +21,10 @@ services:
       - APP_NAME=Gitea
       - USER_UID=1000
       - USER_GID=1000
-      - ROOT_URL=${ip_docker}
-      - SSH_DOMAIN=${ip_docker}
+      - ROOT_URL=${domain}
+      - SSH_DOMAIN=${domain}
       - SSH_PORT=2222
-      - DOMAIN=${ip_docker}
+      - DOMAIN=${domain}
       - HTTP_PORT=3000
       - DB_TYPE=mysql
       - DB_HOST=db:3306
@@ -54,8 +54,8 @@ services:
       - MYSQL_DATABASE=${DB_NAME_FOR_GITEA}
     networks:
       - devops
-    security_opt:
-      - seccomp:unconfined
+    # security_opt:
+    #   - seccomp:unconfined
     volumes:
       - ./data/gitea_data/db/mysql:/var/lib/mysql
     ports:
